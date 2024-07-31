@@ -1,3 +1,20 @@
 module metaschool::RockPaperScissors_01 {
-    // Implement the Rock-Paper-Scissors dApp here ✨
+    const toggleActiveState = async () => {
+    setIsActive(!isActive);
+    if (!account) return;
+    if (!isActive) {
+      console.log("Toggling active state: " + isActive);
+      const payload: InputTransactionData = {
+        data: {
+          function: `${moduleAddress}::${moduleName}::createGame`,
+          functionArguments: [],
+        },
+      };
+      const response = await signAndSubmitTransaction(payload);
+      console.log(response);
+    }
+    setInput("");
+    setResult("");
+    setComputerSelection("");
+  }; 
 }
